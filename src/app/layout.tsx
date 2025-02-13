@@ -1,8 +1,8 @@
+import "./globals.css";
 import { Header } from "@/shared/components/header/header";
 import { ThemeProvider } from "@/shared/components/theme-provider";
 import { ReactNode } from "react";
 import type { Metadata } from "next";
-import "./globals.css";
 
 export function generateMetadata(): Metadata {
   return {
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={"h-dvh flex justify-center"}>
+      <body className={"h-dvh flex justify-center dark:bg-dark-100 bg-dark-100"}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <main className={"max-w-[1280px] h-full w-full"}>
             <Header />
