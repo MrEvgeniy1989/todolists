@@ -4,8 +4,8 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
   <svg
     xmlns="http://www.w3.org/2000/svg"
     data-name="\u0421\u043B\u043E\u0439 1"
-    width="60px"
-    height="60px"
+    width="40px"
+    height="40px"
     viewBox="0 0 128 128"
     fill="currentColor"
     ref={ref}
