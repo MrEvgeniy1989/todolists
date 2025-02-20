@@ -1,38 +1,24 @@
 "use client";
 
-import { Card } from "@/shared/components/ui/card/card";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-type SignUpFormT = {
-  login: string;
-  email: string;
-  password: string;
-};
+import { SignUpForm } from "@/features/auth/ui/sign-up/sign-up-form/sign-up-form";
+import { SuccessfulModalWindow } from "@/features/auth/ui/sign-up/successful-modal-window/successful-modal-window";
+import { useState } from "react";
 
 export default function SignUpPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignUpFormT>();
-  const onSubmit: SubmitHandler<SignUpFormT> = (data) => console.log(data);
+  const [isSuccessfulModalWindowOpen, setIsSuccessfulModalWindowOpen] = useState(false);
 
   return (
-    <div className={"w-full h-full flex items-center justify-center"}>
-      <Card className={"flex flex-col min-w-[400px]"} asChild>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input placeholder="login" {...register("login", { required: true })} />
-          {errors.login && <span>This field is required</span>}
+    <div className={"w-full h-full "}>
+      <div className={"w-full h-full flex items-center justify-center"}>
+        <SignUpForm setIsOpenSuccessfulModalAction={setIsSuccessfulModalWindowOpen} />
+      </div>
 
-          <input placeholder="email" {...register("email", { required: true })} />
-          {errors.email && <span>This field is required</span>}
-
-          <input placeholder="password" {...register("password", { required: true })} />
-          {errors.password && <span>This field is required</span>}
-
-          <input type="submit" />
-        </form>
-      </Card>
+      {isSuccessfulModalWindowOpen && (
+        <SuccessfulModalWindow
+          setIsSuccessfulModalWindowOpen={setIsSuccessfulModalWindowOpen}
+          isSuccessfulModalWindowOpen={isSuccessfulModalWindowOpen}
+        />
+      )}
     </div>
   );
 }

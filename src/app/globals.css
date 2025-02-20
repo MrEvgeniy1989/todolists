@@ -1,9 +1,17 @@
 @import "tailwindcss";
-@tailwind utilities;
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
 
-@layer components {
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  dialog {
+    margin: auto;
+  }
+
   html {
     box-sizing: border-box;
     font-size: 100%;
@@ -47,12 +55,6 @@
 
   a:visited {
     color: inherit;
-  }
-
-  button {
-    all: unset;
-    box-sizing: border-box;
-    cursor: pointer;
   }
 
   ul {
