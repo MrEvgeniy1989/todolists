@@ -31,7 +31,7 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
   });
 
   return (
-    <Card className={"flex flex-col min-w-[400px] shadow-2xl"} asChild>
+    <Card className={"flex min-w-[400px] flex-col shadow-2xl"} asChild>
       <form onSubmit={onFormDataSubmit}>
         <input placeholder="login" {...register("login", { required: true })} />
         {errors.login && <span>This field is required</span>}
@@ -41,8 +41,6 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
 
         <input placeholder="password" {...register("password", { required: true })} />
         {errors.password && <span>This field is required</span>}
-
-        <button type={'button'}>dfddfdf</button>
 
         <input type="submit" />
       </form>

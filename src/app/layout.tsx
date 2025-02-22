@@ -2,9 +2,10 @@ import "./globals.css";
 import { queryClient } from "@/shared/api/query-client";
 import { Header } from "@/shared/components/header/header";
 import { ThemeProvider } from "@/shared/components/theme-provider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode } from "react";
+import { QueryClientProvider } from "@tanstack/react-query";
 import type { Metadata } from "next";
+import { ReactNode } from "react";
+import { Toaster } from "react-hot-toast";
 
 export function generateMetadata(): Metadata {
   return {
@@ -13,7 +14,6 @@ export function generateMetadata(): Metadata {
   };
 }
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,15 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={"h-dvh flex justify-center dark:bg-dark-100 bg-dark-100"}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <main className={"max-w-[1280px] h-full w-full"}>
-            <Header />
-            <div className={"h-[calc(100%-60px)]"}>{children}</div>
-          </main>
-        </ThemeProvider>
-      </QueryClientProvider>
+      <body className={"dark:bg-dark-100 bg-dark-100 flex h-dvh justify-center"}>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <main className={"h-full w-full max-w-[1280px]"}>
+              <Header />
+              <div className={"h-[calc(100%-60px)]"}>{children}</div>
+            </main>
+          </ThemeProvider>
+        </QueryClientProvider>
+        <Toaster />
       </body>
     </html>
   );
