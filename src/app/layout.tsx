@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={"dark:bg-dark-100 bg-dark-100 flex h-dvh justify-center"}>
+      <body className={"flex h-dvh justify-center"}>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <main className={"h-full w-full max-w-[1280px]"}>

@@ -1,25 +1,54 @@
 @import "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
 
-@layer base {
-  button:not(:disabled),
-  [role="button"]:not(:disabled) {
-    cursor: pointer;
-  }
 
-  dialog {
-    margin: auto;
-  }
+@theme {
+    --color-dark-100: #67656c;
+    --color-dark-150: #4f4d53;
+    --color-dark-200: #45434a;
+    --color-dark-300: #333238;
+    --color-dark-500: #26282e;
+    --color-dark-600: #202026;
+    --color-dark-700: #1d1e24;
+    --color-dark-800: #16131B;
+    --color-transparate: transparent;
+    --color-border: rgba(255, 255, 255, 0.1);
 
-  body {
-    min-height: 100dvh;
-    max-width: 100dvw;
-    min-width: 360px;
-  }
+    --screens-xl: 1280px;
+    --screens-lg: 1024px;
+    --screens-md: 768px;
+    --screens-sm: 640px;
+    --screens-xs: 360px;
 
-  ul {
-    list-style: none;
-  }
+    --spacing-headerHeight: 60px;
 }
 
+:root {
+    @apply text-lg dark:text-white dark:bg-dark-700;
+
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+@layer base {
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+
+    dialog {
+        margin: auto;
+    }
+
+    body {
+        min-height: 100dvh;
+        max-width: 100dvw;
+        min-width: var(--screens-xs);
+    }
+}
