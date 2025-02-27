@@ -4,7 +4,11 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <div className={"h-headerHeight bg-Dark-500 flex w-full items-center justify-between"}>
+    <div
+      className={
+        "h-headerHeight from-background-secondary-from to-background-secondary-to flex w-full items-center justify-between bg-linear-to-br pt-1 pr-5 pb-1 pl-5 shadow-md"
+      }
+    >
       <Link href={"/"}>
         <LogoIcon />
       </Link>

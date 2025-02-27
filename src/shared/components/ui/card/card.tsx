@@ -12,7 +12,7 @@ export const Card = memo(
     const Component = asChild ? Slot : "div";
 
     const classes = cn(
-      `rounded-[2px] border p-5 dark:border-border bg-Dark-500 shadow-sm shadow-Dark-300 transition-all duration-300`,
+      `rounded-lg border p-5 border-border bg-linear-to-br from-background-secondary-from to-background-secondary-to shadow-lg shadow-shadow`,
       className,
     );
 

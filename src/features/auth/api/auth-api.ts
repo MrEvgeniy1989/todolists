@@ -5,16 +5,19 @@ export type SignUpDataT = {
   login: string;
   email: string;
   password: string;
-}
+  confirmPassword: string;
+};
 
 type SignUpResponse = {
   message: string;
-}
-
+};
 
 export const authApi = {
   signUp: async (signUpData: SignUpDataT) => {
-    return await axios.post<null, AxiosResponse<SignUpResponse>, SignUpDataT>(`${settings.API_URL}/api/v1/auth/register`, signUpData)
+    return await axios.post<null, AxiosResponse<SignUpResponse>, SignUpDataT>(
+      `${settings.API_URL}/api/v1/auth/register`,
+      signUpData,
+    );
   },
 
   // signIn: async (signInData: SignInDataT) => {
@@ -24,4 +27,4 @@ export const authApi = {
   // me: async () => {
   //   return await axios.get(`${settings.API_URL}/api/v1/auth/me`)
   // }
-}
+};

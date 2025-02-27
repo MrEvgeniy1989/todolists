@@ -1,4 +1,3 @@
-import "./globals.css";
 import { queryClient } from "@/shared/api/query-client";
 import { Header } from "@/shared/components/header/header";
 import { ThemeProvider } from "@/shared/components/theme-provider";
@@ -6,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
+import "./globals.css";
 
 export function generateMetadata(): Metadata {
   return {

@@ -1,20 +1,32 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-@custom-variant light (&:where(.light, .light *));
-
+/*@custom-variant dark (&:where(.dark, .dark *));*/
+/*@custom-variant light (&:where(.light, .light *));*/
 
 @theme {
-    --color-dark-100: #67656c;
-    --color-dark-150: #4f4d53;
-    --color-dark-200: #45434a;
-    --color-dark-300: #333238;
-    --color-dark-500: #26282e;
-    --color-dark-600: #202026;
-    --color-dark-700: #1d1e24;
-    --color-dark-800: #16131B;
-    --color-transparate: transparent;
-    --color-border: rgba(255, 255, 255, 0.1);
+    /*--color-primary: #7a49fe;*/
+    /*--color-secondary: #f6cc1a;*/
+    /*--color-white: #ffffff;*/
+    /*--color-black: #000000;*/
+    /*--color-transparate: transparent;*/
+
+    /*--color-dark-100: #67656c;*/
+    /*--color-dark-150: #4f4d53;*/
+    /*--color-dark-200: #45434a;*/
+    /*--color-dark-300: #333238;*/
+    /*--color-dark-500: #26282e;*/
+    /*--color-dark-600: #202026;*/
+    /*--color-dark-700: #1d1e24;*/
+    /*--color-dark-800: #16131B;*/
+
+    --color-background-primary-from: #f5f7fa;
+    --color-background-primary-to: #e3e8f0;
+    --color-background-secondary-from: #dfe4ed;
+    --color-background-secondary-to: #cbd5e1;
+
+    --color-border: rgba(0, 0, 0, 0.2);
+    --color-shadow: rgba(0, 0, 0, 0.3);
+    --color-text: #000000;
 
     --screens-xl: 1280px;
     --screens-lg: 1024px;
@@ -23,17 +35,22 @@
     --screens-xs: 360px;
 
     --spacing-headerHeight: 60px;
+
+    --default-transition-duration: 0.3s;
+    --default-transition-timing-function: ease;
 }
 
-:root {
-    @apply text-lg dark:text-white dark:bg-dark-700;
+@layer theme {
+    .dark {
+        --color-background-primary-from: #2f2b53;
+        --color-background-primary-to: #171f41;
+        --color-background-secondary-from: #3f3a69;
+        --color-background-secondary-to: #2f365e;
 
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
+        --color-border: rgba(255, 255, 255, 0.1);
+        --color-shadow: rgba(0, 0, 0, 0.6);
+        --color-text: #ffffff;
+    }
 }
 
 @layer base {
@@ -47,6 +64,15 @@
     }
 
     body {
+        @apply text-lg text-text bg-linear-to-br from-background-primary-from to-background-primary-to;
+
+        font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+
         min-height: 100dvh;
         max-width: 100dvw;
         min-width: var(--screens-xs);
