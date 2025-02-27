@@ -1,35 +1,29 @@
 "use client";
 
-import { authApi, SignUpDataT } from "@/features/auth/api/auth-api";
+import { authApi } from "@/features/auth/api/auth-api";
+import { SignInFormSchema, SignInFormValues } from "@/features/auth/model/validators/sign-in-validation-schema";
 import { Card } from "@/shared/components/ui/card/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form/form";
 import { Input } from "@/shared/components/ui/input/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { z } from "zod";
-
-const SignInFormSchema = z.object({
-  loginOrEmail: z.string().min(4, {
-    message: "Login must be at least 4 characters.",
-  }),
-  password: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
-  }),
-});
 
 export const SignInForm = () => {
   const { mutate } = useMutation({
-    mutationFn: async (formData: SignUpDataT) => {
-      return authApi.signUp(formData);
+    mutationFn: async (formData: SignInFormValues) => {
+      return authApi.signIn(formData);
     },
-    onSuccess: () => {
+    onSuccess: () => {},
+    onError: (error: AxiosError<{ message: string }>) => {
+      toast.error(error.response?.data?.message || "Something went wrong");
     },
   });
 
-  const form = useForm<z.infer<typeof SignInFormSchema>>({
+  const form = useForm<SignInFormValues>({
     resolver: zodResolver(SignInFormSchema),
     defaultValues: {
       loginOrEmail: "",
@@ -37,9 +31,8 @@ export const SignInForm = () => {
     },
   });
 
-  const onFormDataSubmit = (formData: z.infer<typeof SignInFormSchema>) => {
+  const onFormDataSubmit = (formData: SignInFormValues) => {
     mutate(formData);
-    toast("You submitted the following values:");
   };
 
   return (
@@ -83,7 +76,7 @@ export const SignInForm = () => {
             Submit
           </button>
 
-          <span className={"mt-5 text-center text-base"}>Do you have account?</span>
+          <span className={"mt-5 text-center text-base"}>You don&#39;t have an account?</span>
           <Link href={"/auth/sign-up"} className={"text-primary text-center"}>
             Sign Up
           </Link>

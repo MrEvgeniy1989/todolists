@@ -1,32 +1,20 @@
 "use client";
 
 import { authApi, SignUpDataT } from "@/features/auth/api/auth-api";
+import { SignUpFormSchema, SignUpFormValues } from "@/features/auth/model/validators/sign-up-validation-schema";
 import { Card } from "@/shared/components/ui/card/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form/form";
 import { Input } from "@/shared/components/ui/input/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { z } from "zod";
 
 type Props = {
   setIsOpenSuccessfulModalAction: (isOpenSuccessfulModal: boolean) => void;
 };
-
-const SignUpFormSchema = z.object({
-  login: z.string().min(4, {
-    message: "Login must be at least 4 characters.",
-  }),
-  email: z.string().email("Email is required"),
-  password: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
-  }),
-  confirmPassword: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
-  }),
-});
 
 export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
   const { mutate } = useMutation({
@@ -36,9 +24,12 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
     onSuccess: () => {
       setIsOpenSuccessfulModalAction(true);
     },
+    onError: (error: AxiosError<{ message: string }>) => {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    },
   });
 
-  const form = useForm<z.infer<typeof SignUpFormSchema>>({
+  const form = useForm<SignUpFormValues>({
     resolver: zodResolver(SignUpFormSchema),
     defaultValues: {
       login: "",
@@ -48,7 +39,7 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
     },
   });
 
-  const onFormDataSubmit = (formData: z.infer<typeof SignUpFormSchema>) => {
+  const onFormDataSubmit = (formData: SignUpFormValues) => {
     mutate(formData);
     toast("You submitted the following values:");
   };
@@ -122,7 +113,7 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
             Submit
           </button>
 
-          <span className={"mt-5 text-center text-base"}>Do you have account?</span>
+          <span className={"mt-5 text-center text-base"}>Do you have an account?</span>
           <Link href={"/auth/sign-in"} className={"text-primary text-center"}>
             Sign In
           </Link>
