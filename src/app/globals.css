@@ -18,7 +18,8 @@
 
     --color-primary: #9a75ff;
     --color-text: var(--color-zinc-700);
-    --color-border: rgba(0, 0, 0, 0.2);
+    --color-border: rgba(0, 0, 0, 0.1);
+    --color-input-border: rgba(0, 0, 0, 0.2);
     --color-shadow: rgba(0, 0, 0, 0.3);
 
     --color-background-primary-from: #f5f7fa;
@@ -43,6 +44,7 @@
         --color-primary: #7a49fe;
         --color-text: var(--color-zinc-200);
         --color-border: rgba(255, 255, 255, 0.1);
+        --color-input-border: rgba(255, 255, 255, 0.2);
         --color-shadow: rgba(0, 0, 0, 0.6);
 
         --color-background-primary-from: #2f2b53;

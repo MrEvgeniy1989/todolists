@@ -11,44 +11,33 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
-type Props = {
-  setIsOpenSuccessfulModalAction: (isOpenSuccessfulModal: boolean) => void;
-};
-
-const SignUpFormSchema = z.object({
-  login: z.string().min(4, {
+const SignInFormSchema = z.object({
+  loginOrEmail: z.string().min(4, {
     message: "Login must be at least 4 characters.",
   }),
-  email: z.string().email("Email is required"),
   password: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
-  }),
-  confirmPassword: z.string().min(4, {
     message: "Password must be at least 4 characters.",
   }),
 });
 
-export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
+export const SignInForm = () => {
   const { mutate } = useMutation({
     mutationFn: async (formData: SignUpDataT) => {
       return authApi.signUp(formData);
     },
     onSuccess: () => {
-      setIsOpenSuccessfulModalAction(true);
     },
   });
 
-  const form = useForm<z.infer<typeof SignUpFormSchema>>({
-    resolver: zodResolver(SignUpFormSchema),
+  const form = useForm<z.infer<typeof SignInFormSchema>>({
+    resolver: zodResolver(SignInFormSchema),
     defaultValues: {
-      login: "",
-      email: "",
+      loginOrEmail: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
-  const onFormDataSubmit = (formData: z.infer<typeof SignUpFormSchema>) => {
+  const onFormDataSubmit = (formData: z.infer<typeof SignInFormSchema>) => {
     mutate(formData);
     toast("You submitted the following values:");
   };
@@ -57,30 +46,16 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
     <Card className={"w-full max-w-105 max-sm:max-w-[335px]"}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onFormDataSubmit)} className={"flex flex-col"}>
-          <h1 className={`mb-5 text-center`}>Sign Up</h1>
+          <h1 className={`mb-5 text-center`}>Sign In</h1>
 
           <FormField
             control={form.control}
-            name="login"
+            name="loginOrEmail"
             render={({ field }) => (
               <FormItem className={`mb-3`}>
-                <FormLabel>Login</FormLabel>
+                <FormLabel>Login or Email</FormLabel>
                 <FormControl>
                   <Input type={"text"} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className={`mb-3`}>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input type={"email"} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -101,20 +76,6 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem className={`mb-3`}>
-                <FormLabel>Confirm password</FormLabel>
-                <FormControl>
-                  <Input type={"password"} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <button
             type="submit"
             className={`bg-primary border-border shadow-shadow mt-8 rounded-lg border px-10 py-1 shadow-xs`}
@@ -123,8 +84,8 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
           </button>
 
           <span className={"mt-5 text-center text-base"}>Do you have account?</span>
-          <Link href={"/auth/sign-in"} className={"text-primary text-center"}>
-            Sign In
+          <Link href={"/auth/sign-up"} className={"text-primary text-center"}>
+            Sign Up
           </Link>
         </form>
       </Form>
