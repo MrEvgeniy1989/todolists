@@ -4,8 +4,8 @@
 /*@custom-variant light (&:where(.light, .light *));*/
 
 @theme {
-    /*--color-primary: #7a49fe;*/
-    /*--color-secondary: #f6cc1a;*/
+    --color-primary: #7a49fe;
+    --color-secondary: #f6cc1a;
     /*--color-white: #ffffff;*/
     /*--color-black: #000000;*/
     /*--color-transparate: transparent;*/
