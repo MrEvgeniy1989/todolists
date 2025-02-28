@@ -24,7 +24,7 @@
     }
 
     body {
-        @apply text-lg text-text flex justify-center min-h-dvh h-dvh max-w-dvw min-w-[var(--breakpoint-xs)];
+        @apply text-lg text-text flex justify-center min-h-dvh h-dvh max-w-dvw min-w-[var(--breakpoint-2xs)];
 
         font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
         font-synthesis: none;
