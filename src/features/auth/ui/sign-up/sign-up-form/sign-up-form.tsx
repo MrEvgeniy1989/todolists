@@ -45,7 +45,7 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
   };
 
   return (
-    <Card className={"w-full max-w-105 max-sm:max-w-[335px]"}>
+    <Card className={"w-full max-w-105 max-xs:max-w-[335px]"}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onFormDataSubmit)} className={"flex flex-col"}>
           <h1 className={`mb-5 text-center`}>Sign Up</h1>

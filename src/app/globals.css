@@ -1,56 +1,15 @@
 @import "tailwindcss";
+@import "../shared/styles/customTheme.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
 
-@theme {
-    /*--color-white: #ffffff;*/
-    /*--color-black: #000000;*/
-    /*--color-transparate: transparent;*/
-    /*--color-dark-100: #67656c;*/
-    /*--color-dark-150: #4f4d53;*/
-    /*--color-dark-200: #45434a;*/
-    /*--color-dark-300: #333238;*/
-    /*--color-dark-500: #26282e;*/
-    /*--color-dark-600: #202026;*/
-    /*--color-dark-700: #1d1e24;*/
-    /*--color-dark-800: #16131B;*/
-
-    --color-primary: #9a75ff;
-    --color-text: var(--color-zinc-700);
-    --color-border: rgba(0, 0, 0, 0.1);
-    --color-input-border: rgba(0, 0, 0, 0.2);
-    --color-shadow: rgba(0, 0, 0, 0.3);
-
-    --color-background-primary-from: #f5f7fa;
-    --color-background-primary-to: #e3e8f0;
-    --color-background-secondary-from: #dfe4ed;
-    --color-background-secondary-to: #cbd5e1;
-
-    --screens-xl: 1280px;
-    --screens-lg: 1024px;
-    --screens-md: 768px;
-    --screens-sm: 640px;
-    --screens-xs: 360px;
-
-    --spacing-headerHeight: 60px;
-
-    --default-transition-duration: 0.3s;
-    --default-transition-timing-function: ease;
-}
-
-@layer theme {
-    .dark {
-        --color-primary: #7a49fe;
-        --color-text: var(--color-zinc-200);
-        --color-border: rgba(255, 255, 255, 0.1);
-        --color-input-border: rgba(255, 255, 255, 0.2);
-        --color-shadow: rgba(0, 0, 0, 0.6);
-
-        --color-background-primary-from: #2f2b53;
-        --color-background-primary-to: #171f41;
-        --color-background-secondary-from: #3f3a69;
-        --color-background-secondary-to: #2f365e;
+:root {
+    .bgPrimary {
+        @apply bg-linear-to-br from-slate-100 to-slate-300 dark:from-violet-900 dark:to-gray-900
+    }
+    .bgSecondary {
+        @apply bg-linear-to-br from-indigo-100 to-indigo-200 dark:from-gray-700 dark:to-gray-800
     }
 }
 
@@ -65,7 +24,7 @@
     }
 
     body {
-        @apply text-lg text-text bg-linear-to-br from-background-primary-from to-background-primary-to;
+        @apply text-lg text-text flex justify-center min-h-dvh h-dvh max-w-dvw min-w-[var(--breakpoint-xs)];
 
         font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
         font-synthesis: none;
@@ -73,9 +32,5 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         -webkit-text-size-adjust: 100%;
-
-        min-height: 100dvh;
-        max-width: 100dvw;
-        min-width: var(--screens-xs);
     }
 }

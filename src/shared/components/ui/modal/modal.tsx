@@ -1,6 +1,6 @@
-import { CloseIcon } from "@/shared/assets/icons/close-icon";
 import { cn } from "@/shared/lib/utils/merge-cn";
 import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 import { ComponentPropsWithoutRef, CSSProperties, ReactNode, Ref } from "react";
 
 export const Modal = Dialog.Root;
@@ -37,15 +37,15 @@ export const ModalContent = ({
   ...rest
 }: ModalContentProps) => {
   const classes = {
-    container: cn("bg-Dark-900/60 h-full w-full fixed insert top-0 block overflow-y-auto", classNameContainer),
+    container: cn("backdrop-blur-md h-full w-full fixed top-0 block overflow-y-auto", classNameContainer),
     body: "flex min-h-full w-full pt-[80px] pb-[20px] px-[20px] justify-center items-center",
     close: cn(
-      `w-[24px] h-[24px] flex justify-center items-center text-Light-100 rounded-[2px] outline-none duration-300 transition-color
-    hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
+      `w-[24px] h-[24px] flex justify-center items-center text-text rounded-xs outline-none duration-300 transition-color
+    hover:text-Primary-300 focus:ring-2`,
       !isShowHeader && "absolute top-[-30px] right-[-30px]",
     ),
     content: cn(
-      `z-20 w-full max-w-md relative rounded bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100 
+      `z-20 w-full max-w-md relative rounded bg-primary-300 text-Light-100 shadow-sm ring-1 ring-Dark-100 
       data-[state=closed]:animate-[dialog-content-hide_200ms] 
       data-[state=open]:animate-[dialog-content-show_200ms]`,
       classNameContent,
@@ -70,14 +70,15 @@ export const ModalContent = ({
 
                 {isClose && (
                   <Dialog.Close aria-label={"Close modal"} className={classes.close}>
-                    <CloseIcon aria-hidden />
+                    <X aria-hidden />
+                    {/*<CloseIcon aria-hidden />*/}
                   </Dialog.Close>
                 )}
               </div>
             ) : (
               isClose && (
                 <Dialog.Close aria-label={"Close modal"} className={classes.close}>
-                  <CloseIcon aria-hidden />
+                  <X aria-hidden/>
                 </Dialog.Close>
               )
             )}

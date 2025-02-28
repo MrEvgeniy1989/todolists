@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={"flex h-dvh justify-center"}>
+      <body className={"bgPrimary"}>
         <Providers>
           <main className={"h-full w-full max-w-[1280px]"}>
             <Header />

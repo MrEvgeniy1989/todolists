@@ -5,7 +5,7 @@ import { SuccessfulModalWindow } from "@/features/auth/ui/sign-up/successful-mod
 import { useState } from "react";
 
 export default function SignUpPage() {
-  const [isSuccessfulModalWindowOpen, setIsSuccessfulModalWindowOpen] = useState(false);
+  const [isSuccessfulModalWindowOpen, setIsSuccessfulModalWindowOpen] = useState(true);
 
   return (
     <div className={"w-full h-full "}>
