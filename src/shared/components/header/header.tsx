@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <div
+    <header
       className={
         "h-headerHeight from-background-secondary-from to-background-secondary-to flex w-full items-center justify-between bg-linear-to-br pt-1 pr-5 pb-1 pl-5 shadow-md"
       }
@@ -13,6 +13,6 @@ export const Header = () => {
         <LogoIcon />
       </Link>
       <ChangeThemeButton />
-    </div>
+    </header>
   );
 };
