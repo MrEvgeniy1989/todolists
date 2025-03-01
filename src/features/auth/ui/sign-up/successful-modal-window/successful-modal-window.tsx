@@ -20,7 +20,7 @@ export const SuccessfulModalWindow = ({ isSuccessfulModalWindowOpen, setIsSucces
         isClose
         title={"Success"}
       >
-        <div className={"flex flex-col gap-[18px] items-start"}>
+        <div className={"flex flex-col items-start gap-[18px]"}>
           <span className={"mb-[54px]"}>Registration was successful!</span>
           <button className={"w-full px-[24px] py-[6px]"} onClick={() => handleModalClose(false)}>
             Ok

@@ -8,8 +8,8 @@ export default function SignUpPage() {
   const [isSuccessfulModalWindowOpen, setIsSuccessfulModalWindowOpen] = useState(false);
 
   return (
-    <div className={"w-full h-full "}>
-      <div className={"w-full h-full flex items-center justify-center"}>
+    <div className={"h-full w-full"}>
+      <div className={"flex h-full w-full items-center justify-center"}>
         <SignUpForm setIsOpenSuccessfulModalAction={setIsSuccessfulModalWindowOpen} />
       </div>
 

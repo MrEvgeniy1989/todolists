@@ -11,10 +11,7 @@ export const Card = memo(
   forwardRef<ComponentRef<"div">, CardProps>(({ asChild = false, className, children, ...props }, ref) => {
     const Component = asChild ? Slot : "div";
 
-    const classes = cn(
-      `rounded-lg border p-5 border-border bgSecondary shadow-lg shadow-shadow`,
-      className,
-    );
+    const classes = cn(`rounded-lg border p-5 border-border bgSecondary shadow-lg shadow-shadow`, className);
 
     return (
       <Component {...props} className={classes} ref={ref}>

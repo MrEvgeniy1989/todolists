@@ -5,9 +5,7 @@ import Link from "next/link";
 export const Header = () => {
   return (
     <header
-      className={
-        "h-headerHeight bgSecondary flex w-full items-center justify-between pt-1 pr-5 pb-1 pl-5 shadow-md"
-      }
+      className={"h-headerHeight bgSecondary flex w-full items-center justify-between pt-1 pr-5 pb-1 pl-5 shadow-md"}
     >
       <Link href={"/"}>
         <LogoIcon />

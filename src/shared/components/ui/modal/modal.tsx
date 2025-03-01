@@ -78,7 +78,7 @@ export const ModalContent = ({
             ) : (
               isClose && (
                 <Dialog.Close aria-label={"Close modal"} className={classes.close}>
-                  <X aria-hidden/>
+                  <X aria-hidden />
                 </Dialog.Close>
               )
             )}

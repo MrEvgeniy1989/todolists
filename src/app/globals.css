@@ -5,32 +5,32 @@
 @custom-variant light (&:where(.light, .light *));
 
 :root {
-    .bgPrimary {
-        @apply bg-linear-to-br from-slate-100 to-slate-300 dark:from-violet-900 dark:to-gray-800
-    }
-    .bgSecondary {
-        @apply bg-linear-to-br from-indigo-100 to-indigo-200 dark:from-gray-700 dark:to-gray-800
-    }
+  .bgPrimary {
+    @apply bg-linear-to-br from-slate-200 to-slate-300 dark:from-violet-950 dark:to-gray-800;
+  }
+  .bgSecondary {
+    @apply bg-linear-to-br from-indigo-100 to-indigo-200 dark:from-slate-700 dark:to-slate-800;
+  }
 }
 
 @layer base {
-    button:not(:disabled),
-    [role="button"]:not(:disabled) {
-        cursor: pointer;
-    }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 
-    dialog {
-        margin: auto;
-    }
+  dialog {
+    margin: auto;
+  }
 
-    body {
-        @apply text-lg text-text flex justify-center min-h-dvh h-dvh max-w-dvw min-w-[var(--breakpoint-2xs)];
+  body {
+    @apply text-text flex h-dvh min-h-dvh max-w-dvw min-w-[var(--breakpoint-2xs)] justify-center text-lg;
 
-        font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-text-size-adjust: 100%;
-    }
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
 }

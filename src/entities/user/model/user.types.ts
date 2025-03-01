@@ -13,4 +13,4 @@ export type UserT = {
   avatarUrl?: string;
   todolists: TodolistDBT[];
   emailConfirmation: EmailConfirmationT;
-}
+};

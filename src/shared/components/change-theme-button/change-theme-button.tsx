@@ -78,8 +78,8 @@ export const ChangeThemeButton = () => {
     "M49 68C59.4934 68 68 59.4934 68 49C51.8708 55.947 42.6762 48.1846 49 30C38.5066 30 30 38.5066 30 49C30 59.4934 38.5066 68 49 68Z";
 
   return (
-    <div className={"flex justify-center items-center"}>
-      <button onClick={changeThemeOnClick} className={"w-[30px] h-[30px] flex items-center justify-center"}>
+    <div className={"flex items-center justify-center"}>
+      <button onClick={changeThemeOnClick} className={"flex h-[30px] w-[30px] items-center justify-center"}>
         <m.svg
           strokeWidth="4"
           strokeLinecap="round"
@@ -93,7 +93,7 @@ export const ChangeThemeButton = () => {
           <m.path
             variants={shineVariant}
             d={moonPath}
-            className={"absolute top-0 left-0 stroke-blue-100 "}
+            className={"absolute top-0 left-0 stroke-blue-100"}
             initial="hidden"
             animate={theme === "dark" ? "visible" : "hidden"}
           />
@@ -135,7 +135,7 @@ export const ChangeThemeButton = () => {
             variants={raysVariants}
             initial="hidden"
             animate={theme === "light" ? "visible" : "hidden"}
-            className="stroke-6 stroke-yellow-600"
+            className="stroke-yellow-600 stroke-6"
             style={{ strokeLinecap: "round" }}
           >
             <m.path className="origin-center" variants={rayVariant} d="M50 2V11" />
