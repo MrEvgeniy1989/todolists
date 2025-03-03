@@ -1,20 +1,18 @@
 "use client";
 
-import { authApi } from "@/features/auth/api/auth-api";
-import { SignInFormSchema, SignInFormValues } from "@/features/auth/model/validators/sign-in-validation-schema";
-import { Card } from "@/shared/components/ui/card/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form/form";
-import { Input } from "@/shared/components/ui/input/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { authApi } from "@/features/auth/api/auth-api"
+import { SignInFormSchema, SignInFormValues } from "@/features/auth/model/validators/sign-in-validation-schema"
+import { Card } from "@/shared/components/ui/card/card"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form/form"
+import { Input } from "@/shared/components/ui/input/input"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
+import { AxiosError } from "axios"
+import Link from "next/link"
+import { useForm } from "react-hook-form"
+import toast from "react-hot-toast"
 
 export const SignInForm = () => {
-  const router = useRouter();
   const { mutate } = useMutation({
     mutationFn: async (formData: SignInFormValues) => {
       return authApi.signIn(formData);
@@ -22,7 +20,7 @@ export const SignInForm = () => {
     onSuccess: (response) => {
       if ("accessToken" in response.data) {
         localStorage.setItem("accessToken", response.data.accessToken);
-        router.push("/todolists");
+        window.location.href = "/todolists";
       }
     },
     onError: (error: AxiosError<{ message: string }>) => {
