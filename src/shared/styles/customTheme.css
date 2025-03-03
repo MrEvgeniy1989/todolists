@@ -1,48 +1,51 @@
 @theme {
-  --color-dark-100: #67656c;
-  --color-dark-150: #4f4d53;
-  --color-dark-200: #45434a;
-  --color-dark-300: #333238;
-  --color-dark-500: #26282e;
-  --color-dark-600: #202026;
-  --color-dark-700: #1d1e24;
-  --color-dark-800: #16131b;
+  --color-dark-50: oklch(55% 0.01 286);
+  --color-dark-100: oklch(50% 0.01 286);
+  --color-dark-200: oklch(45% 0.01 286);
+  --color-dark-300: oklch(40% 0.01 286);
+  --color-dark-400: oklch(36% 0.01 286);
+  --color-dark-500: oklch(30% 0.01 286);
+  --color-dark-600: oklch(25% 0.01 286);
+  --color-dark-700: oklch(20% 0.01 286);
+  --color-dark-800: oklch(15% 0.01 286);
+  --color-dark-900: oklch(10% 0.01 286);
 
-  --color-primary-light-100: #efe8ff;
-  --color-primary-light-200: #e7ddff;
-  --color-primary-light-300: #e0d2ff;
-  --color-primary-light-400: #d8c7ff;
-  --color-primary-light-500: #d1bcff;
-  --color-primary-light-600: #c9b0ff;
-  --color-primary-light-700: #c1a5ff;
-  --color-primary-light-800: #ba9aff;
-  --color-primary-light-900: #b28fff;
+  --color-light-50: oklch(100% 0 0);
+  --color-light-100: oklch(97% 0.001 286);
+  --color-light-200: oklch(94% 0.001 286);
+  --color-light-300: oklch(91% 0.001 286);
+  --color-light-400: oklch(88% 0.001 286);
+  --color-light-500: oklch(85% 0.001 286);
+  --color-light-600: oklch(82% 0.001 286);
+  --color-light-700: oklch(79% 0.001 286);
+  --color-light-800: oklch(76% 0.001 286);
+  --color-light-900: oklch(73% 0.001 286);
 
-  /*--color-primary-100: #efe8ff;*/
-  /*--color-primary-200: #d9c7ff;*/
-  /*--color-primary-300: #c3a6ff;*/
-  /*--color-primary-400: #ad85ff;*/
-  /*--color-primary-500: #9a75ff;*/
-  /*--color-primary-600: #865fe6;*/
-  /*--color-primary-700: #724acc;*/
-  /*--color-primary-800: #5e34b3;*/
-  /*--color-primary-900: #4a1f99;*/
+  --color-primary-light-100: oklch(94% 0.05 286);
+  --color-primary-light-200: oklch(91% 0.06 286);
+  --color-primary-light-300: oklch(88% 0.07 286);
+  --color-primary-light-400: oklch(85% 0.08 286);
+  --color-primary-light-500: oklch(82% 0.09 286);
+  --color-primary-light-600: oklch(79% 0.1 286);
+  --color-primary-light-700: oklch(76% 0.11 286);
+  --color-primary-light-800: oklch(73% 0.12 286);
+  --color-primary-light-900: oklch(70% 0.13 286);
 
-  --color-primary-dark-100: #a178ff;
-  --color-primary-dark-200: #906de7;
-  --color-primary-dark-300: #7f62d0;
-  --color-primary-dark-400: #6d57b8;
-  --color-primary-dark-500: #5c4ca0;
-  --color-primary-dark-600: #4b4088;
-  --color-primary-dark-700: #3a3571;
-  --color-primary-dark-800: #282a59;
-  --color-primary-dark-900: #171f41;
+  --color-primary-dark-100: oklch(70% 0.16 286);
+  --color-primary-dark-200: oklch(65% 0.15 286);
+  --color-primary-dark-300: oklch(60% 0.14 286);
+  --color-primary-dark-400: oklch(55% 0.13 286);
+  --color-primary-dark-500: oklch(50% 0.12 286);
+  --color-primary-dark-600: oklch(45% 0.11 286);
+  --color-primary-dark-700: oklch(40% 0.1 286);
+  --color-primary-dark-800: oklch(35% 0.09 286);
+  --color-primary-dark-900: oklch(30% 0.08 286);
 
-  --color-primary: var(--color-primary-dark-100);
+  --color-primary: var(--color-primary-light-800);
   --color-text: var(--color-zinc-700);
-  --color-border: rgba(0, 0, 0, 0.1);
-  --color-input-border: rgba(0, 0, 0, 0.2);
-  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-border: color-mix(in oklch, var(--color-dark-900) 10%, transparent);
+  --color-input-border: color-mix(in oklch, var(--color-dark-900) 30%, transparent);
+  --color-shadow: color-mix(in oklch, var(--color-dark-900) 30%, transparent);
 
   --breakpoint-xs: 480px;
   --breakpoint-2xs: 360px;
@@ -55,10 +58,10 @@
 
 @layer theme {
   .dark {
-    --color-primary: var(--color-primary-dark-600);
+    --color-primary: var(--color-primary-dark-300);
     --color-text: var(--color-zinc-200);
-    --color-border: rgba(255, 255, 255, 0.1);
-    --color-input-border: rgba(255, 255, 255, 0.2);
-    --color-shadow: rgba(0, 0, 0, 0.6);
+    --color-border: color-mix(in srgb, var(--color-light-100) 10%, transparent);
+    --color-input-border: color-mix(in srgb, var(--color-light-100) 20%, transparent);
+    --color-shadow: color-mix(in oklch, var(--color-dark-900) 50%, transparent);
   }
 }

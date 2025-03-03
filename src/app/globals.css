@@ -6,10 +6,10 @@
 
 :root {
   .bgPrimary {
-    @apply bg-linear-to-br from-slate-200 to-slate-300 dark:from-violet-950 dark:to-gray-800;
+    @apply bg-linear-to-br from-light-200 to-light-300 dark:from-primary-dark-800 dark:to-primary-dark-900;
   }
   .bgSecondary {
-    @apply bg-linear-to-br from-indigo-100 to-indigo-200 dark:from-slate-700 dark:to-slate-800;
+    @apply bg-linear-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800;
   }
 }
 
