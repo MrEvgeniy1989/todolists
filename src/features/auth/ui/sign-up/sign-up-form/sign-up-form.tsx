@@ -108,15 +108,17 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
 
           <button
             type="submit"
-            className={`bg-primary border-border shadow-shadow mt-8 rounded-lg border px-10 py-1 shadow-xs`}
+            className={`bg-primary border-border shadow-shadow mt-4 rounded-lg border px-10 py-1 shadow-xs`}
           >
             Submit
           </button>
 
-          <span className={"mt-5 text-center text-base"}>Do you have an account?</span>
-          <Link href={"/auth/sign-in"} className={"text-primary text-center"}>
-            Sign In
-          </Link>
+          <div className="mt-3 flex items-center justify-center gap-x-2 text-sm">
+            <span>Do you have an account?</span>
+            <Link href={"/auth/sign-in"} className={"text-primary-dark-400 text-center"}>
+              Sign In
+            </Link>
+          </div>
         </form>
       </Form>
     </Card>
