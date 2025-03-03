@@ -20,7 +20,7 @@ export default function Home() {
         router.push("/auth/sign-in");
       }
     }
-  }, [me, isLoading, router]);
+  }, [me, isLoading, router, setIsLoggedIn]);
 
   if (isLoading) {
     return <div>Loading...</div>;
