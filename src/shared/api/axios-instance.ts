@@ -2,8 +2,8 @@ import axios, { CreateAxiosDefaults } from "axios";
 import { settings } from '../settings'
 
 const options: CreateAxiosDefaults = {
-  baseURL: "http://localhost:5000",
-  // baseURL: settings.API_URL,
+  // baseURL: "http://localhost:5000",
+  baseURL: settings.API_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
