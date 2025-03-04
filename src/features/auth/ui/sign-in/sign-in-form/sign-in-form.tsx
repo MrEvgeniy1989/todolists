@@ -20,7 +20,7 @@ export const SignInForm = () => {
     onSuccess: (response) => {
       if ("accessToken" in response.data) {
         localStorage.setItem("accessToken", response.data.accessToken);
-        window.location.href = "/todolists";
+        // window.location.href = "/todolists";
       }
     },
     onError: (error: AxiosError<{ message: string }>) => {
