@@ -1,5 +1,7 @@
+import { authApi } from "@/features/auth/api/auth-api";
 import axios, { CreateAxiosDefaults } from "axios";
-import { settings } from '../settings'
+import { settings } from "../settings";
+import { errorCatch } from "../utils/error-catch";
 
 const options: CreateAxiosDefaults = {
   // baseURL: "http://localhost:5000",
@@ -10,15 +12,49 @@ const options: CreateAxiosDefaults = {
   },
 };
 
-export const axiosNotAuthorized = axios.create(options) // axios без авторизации
-export const axiosWithAuth = axios.create(options) // axios с авторизацией
+export const axiosNotAuthorized = axios.create(options); // axios без авторизации
+export const axiosWithAuth = axios.create(options); // axios с авторизацией
 
-axiosWithAuth.interceptors.request.use(config => {
-  const accessToken = localStorage.getItem("accessToken")
+axiosWithAuth.interceptors.request.use(
+  (config) => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
 
-  if (config.headers && accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
-  }
+axiosWithAuth.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
 
-  return config
-})
+    if (error?.response?.status === 401 && originalRequest && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        const response = await authApi.getNewTokens();
+
+        if (response.data && response.data.accessToken) {
+          localStorage.setItem("accessToken", response.data.accessToken);
+
+          if (originalRequest.headers) {
+            originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+          }
+
+          return axiosWithAuth(originalRequest);
+        } else {
+          throw new Error("No new accessToken in the response");
+        }
+      } catch (refreshError) {
+        if (errorCatch(refreshError) === "Invalid or expired refresh token.") {
+          localStorage.removeItem("accessToken");
+          window.location.href = "/auth/sign-in";
+          return Promise.reject(refreshError);
+        }
+      }
+    }
+    return Promise.reject(error);
+  },
+);
