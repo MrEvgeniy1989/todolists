@@ -1,14 +1,14 @@
 export type SignUpDataT = {
-  login: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+  login: string
+  email: string
+  password: string
+  confirmPassword: string
+}
 
-export type ApiResponse = {
-  message: string;
-};
+export type BaseResponse = {
+  message: string
+}
 
-export type SignInResponse = {
-  accessToken: string;
-};
+export type ResponseWithAccessToken = {
+  accessToken: string
+}
