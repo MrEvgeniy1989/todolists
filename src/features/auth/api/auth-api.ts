@@ -2,21 +2,7 @@ import { SignInFormValues } from "@/features/auth/model/validators/sign-in-valid
 import { SignUpFormValues } from "@/features/auth/model/validators/sign-up-validation-schema";
 import { axiosNotAuthorized, axiosWithAuth } from "@/shared/api/axios-instance";
 import { AxiosResponse } from "axios";
-
-export type SignUpDataT = {
-  login: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-type ApiResponse = {
-  message: string;
-};
-
-type SignInResponse = {
-  accessToken: string;
-};
+import { ApiResponse, SignInResponse, SignUpDataT } from "./auth-api.types";
 
 export const authApi = {
   signUp: async (signUpData: SignUpFormValues) => {
@@ -40,5 +26,9 @@ export const authApi = {
 
   logout: async () => {
     return await axiosWithAuth.post(`/api/v1/auth/logout`);
+  },
+
+  getNewTokens: async () => {
+    return await axiosWithAuth.post(`/api/v1/auth/refresh`);
   },
 };
