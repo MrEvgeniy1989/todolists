@@ -2,7 +2,7 @@
 
 import { authApi } from "@/features/auth/api/auth-api"
 import { RegisterFormValuesT } from "@/features/auth/api/auth-api.types"
-import { RegisterFormSchema } from "@/features/auth/model/validators/sign-up-validation-schema"
+import { RegisterFormSchema } from "@/features/auth/model/validators/register-validation-schema"
 import { Card } from "@/shared/components/ui/card/card"
 import {
   Form,

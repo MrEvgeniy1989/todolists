@@ -3,8 +3,8 @@
 import {
   LoginFormSchema,
   LoginFormValuesT,
-} from "@/features/auth/model/validators/sign-in-validation-schema"
-import { useLoginMutation } from "@/shared/api/hooks/use-sign-in-mutation"
+} from "@/features/auth/model/validators/login-validation-schema"
+import { useLoginMutation } from "@/shared/api/hooks/use-login-mutation"
 import { Card } from "@/shared/components/ui/card/card"
 import {
   Form,

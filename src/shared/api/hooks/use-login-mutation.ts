@@ -2,13 +2,13 @@
 import { authApi } from "@/features/auth/api/auth-api"
 import { ResponseWithAccessToken } from "@/features/auth/api/auth-api.types"
 import { useAuthStore } from "@/features/auth/model/auth-store"
-import { LoginFormValuesT } from "@/features/auth/model/validators/sign-in-validation-schema"
+import { LoginFormValuesT } from "@/features/auth/model/validators/login-validation-schema"
+import { ROUTES_PATH } from "@/shared/constants/routes"
 import { useMutation } from "@tanstack/react-query"
 import { AxiosError, AxiosResponse } from "axios"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 import { queryClient } from "../query-client"
-import { ROUTES_PATH } from "@/shared/constants/routes"
 
 export const useLoginMutation = () => {
   const { setIsLoggedIn } = useAuthStore()

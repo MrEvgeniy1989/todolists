@@ -1,6 +1,6 @@
 import { UserT } from "@/entities/user/model/user.types"
-import { LoginFormValuesT } from "@/features/auth/model/validators/sign-in-validation-schema"
-import { RegisterFormValuesT } from "@/features/auth/model/validators/sign-up-validation-schema"
+import { LoginFormValuesT } from "@/features/auth/model/validators/login-validation-schema"
+import { RegisterFormValuesT } from "@/features/auth/model/validators/register-validation-schema"
 import { axiosNotAuthorized, axiosWithAuth } from "@/shared/api/axios-instance"
 import { AxiosResponse } from "axios"
 import { BaseResponse, ResponseWithAccessToken } from "./auth-api.types"
