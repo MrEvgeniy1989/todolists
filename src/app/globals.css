@@ -6,7 +6,7 @@
 
 :root {
   .bgPrimary {
-    @apply bg-linear-to-br from-light-200 to-light-300 dark:from-primary-dark-800 dark:to-primary-dark-900;
+    @apply from-light-200 to-light-300 dark:from-primary-dark-800 dark:to-primary-dark-900 bg-linear-to-br;
   }
   .bgSecondary {
     @apply bg-linear-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800;
