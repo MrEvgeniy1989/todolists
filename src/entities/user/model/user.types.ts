@@ -6,7 +6,7 @@ export type EmailConfirmationT = {
   isConfirmed: boolean
 }
 
-export type UserRoleT = "user" | "admin";
+export type UserRoleT = "user" | "admin"
 export type UserT = {
   id: string
   login: string

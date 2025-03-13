@@ -9,7 +9,6 @@ type Todolist = {
 }
 
 const TodolistsPage = () => {
-  
   const [todolists] = useState<Todolist[]>([
     {
       id: "1",
