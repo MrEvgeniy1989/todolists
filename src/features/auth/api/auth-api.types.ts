@@ -1,4 +1,4 @@
-export type SignUpDataT = {
+export type RegisterFormValuesT = {
   login: string
   email: string
   password: string

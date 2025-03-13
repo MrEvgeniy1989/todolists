@@ -1,6 +1,7 @@
 "use client"
 
-import { authApi, SignUpDataT } from "@/features/auth/api/auth-api"
+import { authApi } from "@/features/auth/api/auth-api"
+import { RegisterFormValuesT } from "@/features/auth/api/auth-api.types"
 import {
   SignUpFormSchema,
   SignUpFormValues,
@@ -28,7 +29,7 @@ type Props = {
 
 export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
   const { mutate } = useMutation({
-    mutationFn: async (formData: SignUpDataT) => {
+    mutationFn: async (formData: RegisterFormValuesT) => {
       return authApi.register(formData)
     },
     onSuccess: () => {
