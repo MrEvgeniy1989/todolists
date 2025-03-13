@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const SignUpFormSchema = z.object({
   login: z.string().min(4, {
@@ -11,6 +11,6 @@ export const SignUpFormSchema = z.object({
   confirmPassword: z.string().min(4, {
     message: "Password must be at least 4 characters.",
   }),
-});
+})
 
-export type SignUpFormValues = z.infer<typeof SignUpFormSchema>;
+export type SignUpFormValues = z.infer<typeof SignUpFormSchema>

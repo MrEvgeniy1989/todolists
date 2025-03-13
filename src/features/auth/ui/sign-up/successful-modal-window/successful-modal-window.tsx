@@ -1,14 +1,17 @@
-import { Modal, ModalContent } from "@/shared/components/ui/modal/modal";
+import { Modal, ModalContent } from "@/shared/components/ui/modal/modal"
 
 type Props = {
-  isSuccessfulModalWindowOpen: boolean;
-  setIsSuccessfulModalWindowOpen: (isSuccessfulModalWindowOpen: boolean) => void;
-};
+  isSuccessfulModalWindowOpen: boolean
+  setIsSuccessfulModalWindowOpen: (isSuccessfulModalWindowOpen: boolean) => void
+}
 
-export const SuccessfulModalWindow = ({ isSuccessfulModalWindowOpen, setIsSuccessfulModalWindowOpen }: Props) => {
+export const SuccessfulModalWindow = ({
+  isSuccessfulModalWindowOpen,
+  setIsSuccessfulModalWindowOpen,
+}: Props) => {
   const handleModalClose = (isOpen: boolean) => {
-    setIsSuccessfulModalWindowOpen(isOpen);
-  };
+    setIsSuccessfulModalWindowOpen(isOpen)
+  }
 
   return (
     <Modal onOpenChange={handleModalClose} open={isSuccessfulModalWindowOpen}>
@@ -28,5 +31,5 @@ export const SuccessfulModalWindow = ({ isSuccessfulModalWindowOpen, setIsSucces
         </div>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

@@ -1,18 +1,18 @@
-"use client";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { motion as m } from "motion/react";
+"use client"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
+import { motion as m } from "motion/react"
 
 export const ChangeThemeButton = () => {
-  const { theme, setTheme } = useTheme();
-  const changeThemeOnClick = () => setTheme(theme === "light" ? "dark" : "light");
+  const { theme, setTheme } = useTheme()
+  const changeThemeOnClick = () => setTheme(theme === "light" ? "dark" : "light")
 
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
   if (!mounted) {
-    return null;
+    return null
   }
 
   // Анимации для лучей солнца
@@ -28,7 +28,7 @@ export const ChangeThemeButton = () => {
       strokeOpacity: 1,
       transition: { staggerChildren: 0.05 },
     },
-  };
+  }
 
   // Анимации для одного луча
   const rayVariant = {
@@ -49,7 +49,7 @@ export const ChangeThemeButton = () => {
         scale: { duration: 0.3 },
       },
     },
-  };
+  }
 
   // Анимация для бликов луны
   const shineVariant = {
@@ -69,17 +69,20 @@ export const ChangeThemeButton = () => {
         ease: "linear",
       },
     },
-  };
+  }
 
   // Пути для анимации солнца и луны
   const sunPath =
-    "M49 68C59.4934 68 68 59.4934 68 49C68 38.5066 59.4934 30 49 30C38.5066 30 30 38.5066 30 49C30 59.4934 38.5066 68 49 68Z";
+    "M49 68C59.4934 68 68 59.4934 68 49C68 38.5066 59.4934 30 49 30C38.5066 30 30 38.5066 30 49C30 59.4934 38.5066 68 49 68Z"
   const moonPath =
-    "M49 68C59.4934 68 68 59.4934 68 49C51.8708 55.947 42.6762 48.1846 49 30C38.5066 30 30 38.5066 30 49C30 59.4934 38.5066 68 49 68Z";
+    "M49 68C59.4934 68 68 59.4934 68 49C51.8708 55.947 42.6762 48.1846 49 30C38.5066 30 30 38.5066 30 49C30 59.4934 38.5066 68 49 68Z"
 
   return (
     <div className={"flex items-center justify-center"}>
-      <button onClick={changeThemeOnClick} className={"flex h-[30px] w-[30px] items-center justify-center"}>
+      <button
+        onClick={changeThemeOnClick}
+        className={"flex h-[30px] w-[30px] items-center justify-center"}
+      >
         <m.svg
           strokeWidth="4"
           strokeLinecap="round"
@@ -150,5 +153,5 @@ export const ChangeThemeButton = () => {
         </m.svg>
       </button>
     </div>
-  );
-};
+  )
+}

@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { SignUpForm } from "@/features/auth/ui/sign-up/sign-up-form/sign-up-form";
-import { SuccessfulModalWindow } from "@/features/auth/ui/sign-up/successful-modal-window/successful-modal-window";
-import { useState } from "react";
+import { SignUpForm } from "@/features/auth/ui/sign-up/sign-up-form/sign-up-form"
+import { SuccessfulModalWindow } from "@/features/auth/ui/sign-up/successful-modal-window/successful-modal-window"
+import { useState } from "react"
 
 export default function SignUpPage() {
-  const [isSuccessfulModalWindowOpen, setIsSuccessfulModalWindowOpen] = useState(false);
+  const [isSuccessfulModalWindowOpen, setIsSuccessfulModalWindowOpen] = useState(false)
 
   return (
     <div className={"h-full w-full"}>
@@ -20,5 +20,5 @@ export default function SignUpPage() {
         />
       )}
     </div>
-  );
+  )
 }

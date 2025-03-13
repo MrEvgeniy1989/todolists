@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { z } from "zod"
 
-export const SignInFormSchema = z.object({
+export const LoginFormSchema = z.object({
   loginOrEmail: z.string().min(4, {
-    message: "Login must be at least 4 characters.",
+    message: "Логин или email должен быть не менее 4 символов.",
   }),
   password: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
+    message: "Пароль должен быть не менее 4 символов.",
   }),
-});
+})
 
-export type SignInFormValues = z.infer<typeof SignInFormSchema>;
+export type LoginFormValuesT = z.infer<typeof LoginFormSchema>

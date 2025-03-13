@@ -1,33 +1,43 @@
-"use client";
+"use client"
 
-import { authApi, SignUpDataT } from "@/features/auth/api/auth-api";
-import { SignUpFormSchema, SignUpFormValues } from "@/features/auth/model/validators/sign-up-validation-schema";
-import { Card } from "@/shared/components/ui/card/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/shared/components/ui/form/form";
-import { Input } from "@/shared/components/ui/input/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { authApi, SignUpDataT } from "@/features/auth/api/auth-api"
+import {
+  SignUpFormSchema,
+  SignUpFormValues,
+} from "@/features/auth/model/validators/sign-up-validation-schema"
+import { Card } from "@/shared/components/ui/card/card"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/shared/components/ui/form/form"
+import { Input } from "@/shared/components/ui/input/input"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
+import { AxiosError } from "axios"
+import Link from "next/link"
+import { useForm } from "react-hook-form"
+import toast from "react-hot-toast"
 
 type Props = {
-  setIsOpenSuccessfulModalAction: (isOpenSuccessfulModal: boolean) => void;
-};
+  setIsOpenSuccessfulModalAction: (isOpenSuccessfulModal: boolean) => void
+}
 
 export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
   const { mutate } = useMutation({
     mutationFn: async (formData: SignUpDataT) => {
-      return authApi.signUp(formData);
+      return authApi.register(formData)
     },
     onSuccess: () => {
-      setIsOpenSuccessfulModalAction(true);
+      setIsOpenSuccessfulModalAction(true)
     },
     onError: (error: AxiosError<{ message: string }>) => {
-      toast.error(error.response?.data?.message || "Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong")
     },
-  });
+  })
 
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(SignUpFormSchema),
@@ -37,12 +47,11 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
       password: "",
       confirmPassword: "",
     },
-  });
+  })
 
   const onFormDataSubmit = (formData: SignUpFormValues) => {
-    mutate(formData);
-    toast("You submitted the following values:");
-  };
+    mutate(formData)
+  }
 
   return (
     <Card className={"max-xs:max-w-[335px] w-full max-w-105"}>
@@ -122,5 +131,5 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
         </form>
       </Form>
     </Card>
-  );
-};
+  )
+}

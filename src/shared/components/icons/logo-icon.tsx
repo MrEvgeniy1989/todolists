@@ -1,4 +1,4 @@
-import { SVGProps, Ref, forwardRef, memo } from "react";
+import { SVGProps, Ref, forwardRef, memo } from "react"
 
 const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
@@ -15,7 +15,7 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     <path d="M98 20h-4a2 2 0 0 0 0 4h2v88H32V24h2a2 2 0 0 0 0-4h-4a2 2 0 0 0-2 2v92a2 2 0 0 0 2 2h68a2 2 0 0 0 2-2V22a2 2 0 0 0-2-2Z" />
     <path d="M66 48h22a2 2 0 0 0 0-4H66a2 2 0 0 0 0 4ZM66 60h16a2 2 0 0 0 0-4H66a2 2 0 0 0 0 4ZM46 59.8a2 2 0 0 0 1.41.58h.09a2 2 0 0 0 1.5-.71L59.53 47a2 2 0 1 0-3.06-2.57l-9.19 11-5.87-5.86a2 2 0 0 0-2.82 2.83ZM88 76H66a2 2 0 0 1 0-4h22a2 2 0 0 1 0 4ZM82 88H66a2 2 0 0 1 0-4h16a2 2 0 0 1 0 4ZM47.41 88.38A2 2 0 0 1 46 87.8l-7.41-7.41a2 2 0 1 1 2.82-2.83l5.87 5.86 9.19-11A2 2 0 1 1 59.53 75L49 87.67a2 2 0 0 1-1.45.71Z" />
   </svg>
-);
-const ForwardRef = forwardRef(SvgComponent);
-const Memo = memo(ForwardRef);
-export { Memo as LogoIcon };
+)
+const ForwardRef = forwardRef(SvgComponent)
+const Memo = memo(ForwardRef)
+export { Memo as LogoIcon }
