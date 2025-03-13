@@ -1,6 +1,6 @@
 "use client"
 import { useAuthStore } from "@/features/auth/model/auth-store"
-import { useLogoutMutation } from "@/shared/api/use-logout-mutation/use-logout-mutation"
+import { useLogoutMutation } from "@/shared/api/hooks/use-logout-mutation"
 import { ChangeThemeButton } from "@/shared/components/change-theme-button/change-theme-button"
 import { LogoIcon } from "@/shared/components/icons/logo-icon"
 import Link from "next/link"

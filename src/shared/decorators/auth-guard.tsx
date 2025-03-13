@@ -1,7 +1,7 @@
 "use client"
 
 import { useAuthStore } from "@/features/auth/model/auth-store"
-import { useMeQuery } from "@/shared/api/use-me-query/use-me-query"
+import { useMeQuery } from "@/shared/api/hooks/use-me-query"
 import { usePathname, useRouter } from "next/navigation"
 import { ReactNode, useEffect, useLayoutEffect, useState } from "react"
 

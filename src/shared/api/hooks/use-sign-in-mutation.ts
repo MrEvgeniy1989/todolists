@@ -1,13 +1,13 @@
 "use client"
 import { authApi } from "@/features/auth/api/auth-api"
+import { ResponseWithAccessToken } from "@/features/auth/api/auth-api.types"
 import { useAuthStore } from "@/features/auth/model/auth-store"
 import { LoginFormValuesT } from "@/features/auth/model/validators/sign-in-validation-schema"
 import { useMutation } from "@tanstack/react-query"
 import { AxiosError, AxiosResponse } from "axios"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
-import { queryClient } from "./query-client"
-import { ResponseWithAccessToken } from "@/features/auth/api/auth-api.types"
+import { queryClient } from "../query-client"
 
 export const useLoginMutation = () => {
   const { setIsLoggedIn } = useAuthStore()
