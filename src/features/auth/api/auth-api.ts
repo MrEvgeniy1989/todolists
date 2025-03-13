@@ -1,23 +1,23 @@
 import { UserT } from "@/entities/user/model/user.types"
-import { SignInFormValues } from "@/features/auth/model/validators/sign-in-validation-schema"
+import { LoginFormValuesT } from "@/features/auth/model/validators/sign-in-validation-schema"
 import { SignUpFormValues } from "@/features/auth/model/validators/sign-up-validation-schema"
 import { axiosNotAuthorized, axiosWithAuth } from "@/shared/api/axios-instance"
 import { AxiosResponse } from "axios"
 import { BaseResponse, ResponseWithAccessToken, SignUpDataT } from "./auth-api.types"
 
 export const authApi = {
-  signUp: async (signUpData: SignUpFormValues) => {
+  register: async (signUpData: SignUpFormValues) => {
     return await axiosNotAuthorized.post<null, AxiosResponse<BaseResponse>, SignUpDataT>(
       `/api/v1/auth/register`,
       signUpData,
     )
   },
 
-  signIn: async (signInData: SignInFormValues) => {
+  login: async (signInData: LoginFormValuesT) => {
     return await axiosNotAuthorized.post<
       ResponseWithAccessToken,
       AxiosResponse<ResponseWithAccessToken>,
-      SignInFormValues
+      LoginFormValuesT
     >(`/api/v1/auth/login`, signInData)
   },
 
