@@ -18,11 +18,11 @@ export const useLogoutMutation = () => {
     onSuccess: () => {
       localStorage.removeItem("accessToken")
       setIsLoggedIn(false)
-      toast.success("Exit is successful")
+      toast.success("Вы успешно вышли из системы")
       router.push("/auth/sign-in")
     },
     onError: (error: AxiosError<{ message: string }>) => {
-      toast.error(error.response?.data?.message || "Something went wrong")
+      toast.error(error.response?.data?.message || "Что-то пошло не так...")
     },
   })
 
