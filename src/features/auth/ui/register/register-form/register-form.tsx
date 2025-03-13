@@ -1,8 +1,8 @@
 "use client"
 
-import { authApi } from "@/features/auth/api/auth-api"
 import { RegisterFormValuesT } from "@/features/auth/api/auth-api.types"
 import { RegisterFormSchema } from "@/features/auth/model/validators/register-validation-schema"
+import { useRegisterMutation } from "@/shared/api/hooks/use-register-mutation"
 import { Card } from "@/shared/components/ui/card/card"
 import {
   Form,
@@ -15,27 +15,16 @@ import {
 import { Input } from "@/shared/components/ui/input/input"
 import { ROUTES_PATH } from "@/shared/constants/routes"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useMutation } from "@tanstack/react-query"
-import { AxiosError } from "axios"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
-import toast from "react-hot-toast"
 
 type Props = {
   setIsOpenSuccessfulModalAction: (isOpenSuccessfulModal: boolean) => void
 }
 
 export const RegisterForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
-  const { mutate, isPending: isRegisterPending } = useMutation({
-    mutationFn: async (formData: RegisterFormValuesT) => {
-      return authApi.register(formData)
-    },
-    onSuccess: () => {
-      setIsOpenSuccessfulModalAction(true)
-    },
-    onError: (error: AxiosError<{ message: string }>) => {
-      toast.error(error.response?.data?.message || "Что-то пошло не так")
-    },
+  const { mutate: registerMutate, isPending: isRegisterPending } = useRegisterMutation({
+    setIsOpenSuccessfulModalAction,
   })
 
   const form = useForm<RegisterFormValuesT>({
@@ -49,7 +38,7 @@ export const RegisterForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
   })
 
   const onFormDataSubmit = (formData: RegisterFormValuesT) => {
-    mutate(formData)
+    registerMutate(formData)
   }
 
   return (
