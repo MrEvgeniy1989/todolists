@@ -2,10 +2,7 @@
 
 import { authApi } from "@/features/auth/api/auth-api"
 import { RegisterFormValuesT } from "@/features/auth/api/auth-api.types"
-import {
-  SignUpFormSchema,
-  SignUpFormValues,
-} from "@/features/auth/model/validators/sign-up-validation-schema"
+import { RegisterFormSchema } from "@/features/auth/model/validators/sign-up-validation-schema"
 import { Card } from "@/shared/components/ui/card/card"
 import {
   Form,
@@ -16,6 +13,7 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form/form"
 import { Input } from "@/shared/components/ui/input/input"
+import { ROUTES_PATH } from "@/shared/constants/routes"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { AxiosError } from "axios"
@@ -27,8 +25,8 @@ type Props = {
   setIsOpenSuccessfulModalAction: (isOpenSuccessfulModal: boolean) => void
 }
 
-export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
-  const { mutate } = useMutation({
+export const RegisterForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
+  const { mutate, isPending: isRegisterPending } = useMutation({
     mutationFn: async (formData: RegisterFormValuesT) => {
       return authApi.register(formData)
     },
@@ -36,12 +34,12 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
       setIsOpenSuccessfulModalAction(true)
     },
     onError: (error: AxiosError<{ message: string }>) => {
-      toast.error(error.response?.data?.message || "Something went wrong")
+      toast.error(error.response?.data?.message || "Что-то пошло не так")
     },
   })
 
-  const form = useForm<SignUpFormValues>({
-    resolver: zodResolver(SignUpFormSchema),
+  const form = useForm<RegisterFormValuesT>({
+    resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
       login: "",
       email: "",
@@ -50,7 +48,7 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
     },
   })
 
-  const onFormDataSubmit = (formData: SignUpFormValues) => {
+  const onFormDataSubmit = (formData: RegisterFormValuesT) => {
     mutate(formData)
   }
 
@@ -58,14 +56,14 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
     <Card className={"max-xs:max-w-[335px] w-full max-w-105"}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onFormDataSubmit)} className={"flex flex-col"}>
-          <h1 className={`mb-5 text-center`}>Sign Up</h1>
+          <h1 className={`mb-5 text-center`}>Регистрация</h1>
 
           <FormField
             control={form.control}
             name="login"
             render={({ field }) => (
               <FormItem className={`mb-3`}>
-                <FormLabel>Login</FormLabel>
+                <FormLabel>Логин</FormLabel>
                 <FormControl>
                   <Input type={"text"} {...field} />
                 </FormControl>
@@ -93,7 +91,7 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
             name="password"
             render={({ field }) => (
               <FormItem className={`mb-3`}>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Пароль</FormLabel>
                 <FormControl>
                   <Input type={"password"} {...field} />
                 </FormControl>
@@ -107,7 +105,7 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem className={`mb-3`}>
-                <FormLabel>Confirm password</FormLabel>
+                <FormLabel>Подтвердите пароль</FormLabel>
                 <FormControl>
                   <Input type={"password"} {...field} />
                 </FormControl>
@@ -118,15 +116,15 @@ export const SignUpForm = ({ setIsOpenSuccessfulModalAction }: Props) => {
 
           <button
             type="submit"
-            className={`bg-primary border-border shadow-shadow mt-4 rounded-lg border px-10 py-1 shadow-xs`}
+            className={`bg-primary border-border shadow-shadow mt-4 rounded-lg border px-10 py-1 shadow-xs disabled:cursor-not-allowed disabled:opacity-50`}
           >
-            Submit
+            {isRegisterPending ? "Выполняется регистрация..." : "Зарегистрироваться"}
           </button>
 
           <div className="mt-3 flex items-center justify-center gap-x-2 text-sm">
-            <span>Do you have an account?</span>
-            <Link href={"/auth/sign-in"} className={"text-primary-dark-400 text-center"}>
-              Sign In
+            <span>Уже есть аккаунт?</span>
+            <Link href={ROUTES_PATH.auth.login} className={"text-primary-dark-400 text-center"}>
+              Войти
             </Link>
           </div>
         </form>

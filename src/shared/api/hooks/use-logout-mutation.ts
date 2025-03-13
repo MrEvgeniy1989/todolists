@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
+import { ROUTES_PATH } from "@/shared/constants/routes"
 
 export const useLogoutMutation = () => {
   const { setIsLoggedIn } = useAuthStore()
@@ -19,7 +20,7 @@ export const useLogoutMutation = () => {
       localStorage.removeItem("accessToken")
       setIsLoggedIn(false)
       toast.success("Вы успешно вышли из системы")
-      router.push("/auth/sign-in")
+      router.push(ROUTES_PATH.auth.login)
     },
     onError: (error: AxiosError<{ message: string }>) => {
       toast.error(error.response?.data?.message || "Что-то пошло не так...")

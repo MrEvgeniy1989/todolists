@@ -1,16 +1,16 @@
 import { z } from "zod"
 
-export const SignUpFormSchema = z.object({
+export const RegisterFormSchema = z.object({
   login: z.string().min(4, {
-    message: "Login must be at least 4 characters.",
+    message: "Логин должен быть не менее 4 символов.",
   }),
-  email: z.string().email("Email is required"),
+  email: z.string().email("Email обязателен"),
   password: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
+    message: "Пароль должен быть не менее 4 символов.",
   }),
   confirmPassword: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
+    message: "Пароль должен быть не менее 4 символов.",
   }),
 })
 
-export type SignUpFormValues = z.infer<typeof SignUpFormSchema>
+export type RegisterFormValuesT = z.infer<typeof RegisterFormSchema>

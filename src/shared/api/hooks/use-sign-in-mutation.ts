@@ -8,6 +8,7 @@ import { AxiosError, AxiosResponse } from "axios"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 import { queryClient } from "../query-client"
+import { ROUTES_PATH } from "@/shared/constants/routes"
 
 export const useLoginMutation = () => {
   const { setIsLoggedIn } = useAuthStore()
@@ -23,7 +24,7 @@ export const useLoginMutation = () => {
       setIsLoggedIn(true)
       queryClient.invalidateQueries({ queryKey: ["me"] })
       toast.success("Вы успешно вошли в систему")
-      router.push("/todolists")
+      router.push(ROUTES_PATH.todolists.main)
     },
     onError: (error: AxiosError<{ message: string }>) => {
       toast.error(error.response?.data?.message || "Что-то пошло не так...")

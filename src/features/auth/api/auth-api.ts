@@ -1,14 +1,16 @@
 import { UserT } from "@/entities/user/model/user.types"
 import { LoginFormValuesT } from "@/features/auth/model/validators/sign-in-validation-schema"
-import { SignUpFormValues } from "@/features/auth/model/validators/sign-up-validation-schema"
+import { RegisterFormValuesT } from "@/features/auth/model/validators/sign-up-validation-schema"
 import { axiosNotAuthorized, axiosWithAuth } from "@/shared/api/axios-instance"
 import { AxiosResponse } from "axios"
-import { BaseResponse, RegisterFormValuesT, ResponseWithAccessToken } from "./auth-api.types"
+import { BaseResponse, ResponseWithAccessToken } from "./auth-api.types"
+
+const AUTH_PATH = "/api/v1/auth"
 
 export const authApi = {
-  register: async (signUpData: SignUpFormValues) => {
+  register: async (signUpData: RegisterFormValuesT) => {
     return await axiosNotAuthorized.post<null, AxiosResponse<BaseResponse>, RegisterFormValuesT>(
-      `/api/v1/auth/register`,
+      `${AUTH_PATH}/register`,
       signUpData,
     )
   },
@@ -18,16 +20,16 @@ export const authApi = {
       ResponseWithAccessToken,
       AxiosResponse<ResponseWithAccessToken>,
       LoginFormValuesT
-    >(`/api/v1/auth/login`, signInData)
+    >(`${AUTH_PATH}/login`, signInData)
   },
 
   me: async () => {
-    return await axiosWithAuth.get<UserT>(`/api/v1/auth/me`)
+    return await axiosWithAuth.get<UserT>(`${AUTH_PATH}/me`)
   },
 
   logout: async () => {
     return await axiosWithAuth.post<BaseResponse, AxiosResponse<BaseResponse>, null>(
-      `/api/v1/auth/logout`,
+      `${AUTH_PATH}/logout`,
     )
   },
 
@@ -36,6 +38,6 @@ export const authApi = {
       ResponseWithAccessToken,
       AxiosResponse<ResponseWithAccessToken>,
       null
-    >(`/api/v1/auth/refresh`)
+    >(`${AUTH_PATH}/refresh`)
   },
 }

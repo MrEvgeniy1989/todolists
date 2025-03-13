@@ -3,6 +3,7 @@ import { useAuthStore } from "@/features/auth/model/auth-store"
 import { useLogoutMutation } from "@/shared/api/hooks/use-logout-mutation"
 import { ChangeThemeButton } from "@/shared/components/change-theme-button/change-theme-button"
 import { LogoIcon } from "@/shared/components/icons/logo-icon"
+import { ROUTES_PATH } from "@/shared/constants/routes"
 import Link from "next/link"
 
 export const Header = () => {
@@ -24,9 +25,9 @@ export const Header = () => {
       </Link>
       <div className={"flex gap-2"}>
         <Link href={"/"}>Home</Link>
-        <Link href={"/auth/sign-in"}>Sign In</Link>
-        <Link href={"/auth/sign-up"}>Sign up</Link>
-        {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
+        <Link href={ROUTES_PATH.auth.login}>Sign In</Link>
+        <Link href={ROUTES_PATH.auth.register}>Sign up</Link>
+        {isLoggedIn && <button onClick={handleLogout}>Выход</button>}
         <ChangeThemeButton />
       </div>
     </header>

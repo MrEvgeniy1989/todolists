@@ -15,12 +15,13 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form/form"
 import { Input } from "@/shared/components/ui/input/input"
+import { ROUTES_PATH } from "@/shared/constants/routes"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 
-export const SignInForm = () => {
-  const { mutate: signInMutate, isPending: isSignInPending } = useLoginMutation()
+export const LoginForm = () => {
+  const { mutate: loginMutate, isPending: isLoginPending } = useLoginMutation()
 
   const form = useForm<LoginFormValuesT>({
     resolver: zodResolver(LoginFormSchema),
@@ -31,7 +32,7 @@ export const SignInForm = () => {
   })
 
   const onFormDataSubmit = (formData: LoginFormValuesT) => {
-    signInMutate(formData)
+    loginMutate(formData)
   }
 
   return (
@@ -47,7 +48,7 @@ export const SignInForm = () => {
               <FormItem className="mb-3">
                 <FormLabel>Логин или Email</FormLabel>
                 <FormControl>
-                  <Input type="text" {...field} disabled={isSignInPending} />
+                  <Input type="text" {...field} disabled={isLoginPending} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -61,7 +62,7 @@ export const SignInForm = () => {
               <FormItem className={`mb-3`}>
                 <FormLabel>Пароль</FormLabel>
                 <FormControl>
-                  <Input type="password" {...field} disabled={isSignInPending} />
+                  <Input type="password" {...field} disabled={isLoginPending} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -70,16 +71,16 @@ export const SignInForm = () => {
 
           <button
             type="submit"
-            className={`bg-primary border-border shadow-shadow mt-4 rounded-lg border px-10 py-1 shadow-xs`}
-            disabled={isSignInPending}
+            className={`bg-primary border-border shadow-shadow mt-4 rounded-lg border px-10 py-1 shadow-xs disabled:cursor-not-allowed disabled:opacity-50`}
+            disabled={isLoginPending}
           >
-            {isSignInPending ? "Выполняется вход..." : "Войти"}
+            {isLoginPending ? "Выполняется вход..." : "Войти"}
           </button>
 
           <div className="mt-3 flex items-center justify-center gap-x-2 text-sm">
             <span className="text-sm">Еще нет аккаунта? </span>
             <Link
-              href="/auth/sign-up"
+              href={ROUTES_PATH.auth.register}
               className="text-primary-dark-400 text-center text-sm hover:underline"
             >
               Зарегистрироваться

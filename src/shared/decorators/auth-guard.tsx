@@ -4,6 +4,7 @@ import { useAuthStore } from "@/features/auth/model/auth-store"
 import { useMeQuery } from "@/shared/api/hooks/use-me-query"
 import { usePathname, useRouter } from "next/navigation"
 import { ReactNode, useEffect, useLayoutEffect, useState } from "react"
+import { ROUTES_PATH } from "../constants/routes"
 
 const AuthGuard = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
@@ -24,11 +25,11 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
     if (hasToken && me && (currentPath === "/" || isPublicPath)) {
       setUser(me)
       setIsLoggedIn(true)
-      router.push("/todolists")
+      router.push(ROUTES_PATH.todolists.main)
     } else if ((!hasToken || !me) && !isPublicPath) {
       setIsLoggedIn(false)
       setUser(null)
-      router.push("/auth/sign-in")
+      router.push(ROUTES_PATH.auth.login)
     }
   }, [mounted, isLoading, hasToken, me, isPublicPath, router, currentPath, setIsLoggedIn, setUser])
 
@@ -37,7 +38,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
       setIsLoggedIn(false)
       setUser(null)
       if (!isPublicPath) {
-        router.push("/auth/sign-in")
+        router.push(ROUTES_PATH.auth.login)
       }
     }
     window.addEventListener("auth:logout", handleLogout)
