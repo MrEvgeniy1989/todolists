@@ -32,6 +32,7 @@ export const LoginForm = () => {
   })
 
   const onFormDataSubmit = (formData: LoginFormValuesT) => {
+    console.log("onFormDataSubmit")
     loginMutate(formData)
   }
 

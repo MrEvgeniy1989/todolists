@@ -16,6 +16,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
 
   const [mounted, setMounted] = useState(false)
   useLayoutEffect(() => {
+    console.log("useLayoutEffect authGuard")
     setMounted(true)
   }, [])
 
@@ -28,7 +29,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
       if (currentPath === "/" || isPublicPath) {
         router.push(ROUTES_PATH.todolists.main)
       }
-    } else if (!isLoading && !isPublicPath) {
+    } else if (!isPublicPath) {
       setIsLoggedIn(false)
       setUser(null)
       router.push(ROUTES_PATH.auth.login)
