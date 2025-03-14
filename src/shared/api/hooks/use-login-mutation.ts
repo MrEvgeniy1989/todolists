@@ -18,11 +18,11 @@ export const useLoginMutation = () => {
     mutationFn: async (loginData: LoginFormValuesT) => {
       return await authApi.login(loginData)
     },
-    onSuccess: (response: AxiosResponse<ResponseWithAccessToken>) => {
+    onSuccess: async (response: AxiosResponse<ResponseWithAccessToken>) => {
       const { accessToken } = response.data
       localStorage.setItem("accessToken", accessToken)
       setIsLoggedIn(true)
-      queryClient.invalidateQueries({ queryKey: ["me"] })
+      await queryClient.invalidateQueries({ queryKey: ["me"] })
       toast.success("Вы успешно вошли в систему")
       router.push(ROUTES_PATH.todolists.main)
     },

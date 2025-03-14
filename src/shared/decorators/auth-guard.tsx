@@ -22,11 +22,13 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!mounted || isLoading) return
 
-    if (hasToken && me && (currentPath === "/" || isPublicPath)) {
+    if (hasToken && me) {
       setUser(me)
       setIsLoggedIn(true)
-      router.push(ROUTES_PATH.todolists.main)
-    } else if ((!hasToken || !me) && !isPublicPath) {
+      if (currentPath === "/" || isPublicPath) {
+        router.push(ROUTES_PATH.todolists.main)
+      }
+    } else if (!isLoading && !isPublicPath) {
       setIsLoggedIn(false)
       setUser(null)
       router.push(ROUTES_PATH.auth.login)
