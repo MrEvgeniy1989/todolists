@@ -27,8 +27,9 @@ export const useLoginMutation = () => {
       router.push(ROUTES_PATH.todolists.main)
     },
     onError: (error: AxiosError<{ message: string }>) => {
-      toast.error(error.response?.data?.message || "Что-то пошло не так...")
-      console.error(error.response?.data?.message || "Что-то пошло не так...")
+      const errorMessage = error.response?.data?.message || "Что-то пошло не так..."
+      toast.error(errorMessage)
+      console.error(errorMessage)
     },
   })
 
