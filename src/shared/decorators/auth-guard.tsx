@@ -16,7 +16,6 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
 
   const [mounted, setMounted] = useState(false)
   useLayoutEffect(() => {
-    console.log("useLayoutEffect authGuard")
     setMounted(true)
   }, [])
 
